@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "UsersSignups", type: :system do
+RSpec.describe "UsersSignup", type: :system do
   before do
     @user = FactoryBot.build(:user)
   end
