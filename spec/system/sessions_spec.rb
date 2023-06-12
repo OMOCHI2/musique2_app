@@ -8,9 +8,9 @@ RSpec.describe "Sessions", type: :system do
       it "ログインユーザ用のページが表示されること" do
         visit login_path
 
-        fill_in "Email", with: user.email
-        fill_in "Password", with: user.password
-        click_button "Log in"
+        fill_in "メールアドレス", with: user.email
+        fill_in "パスワード", with: user.password
+        click_button "ログイン"
 
         expect(page).not_to have_selector "a[href=\"#{login_path}\"]"
         expect(page).to have_selector "a[href=\"#{logout_path}\"]"
@@ -22,9 +22,9 @@ RSpec.describe "Sessions", type: :system do
       it "flashメッセージが表示されること" do
         visit login_path
 
-        fill_in "Email", with: ""
-        fill_in "Password", with: ""
-        click_button "Log in"
+        fill_in "メールアドレス", with: ""
+        fill_in "パスワード", with: ""
+        click_button "ログイン"
 
         expect(page).to have_selector "div.alert.alert-danger"
 

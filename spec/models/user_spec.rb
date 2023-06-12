@@ -74,8 +74,14 @@ RSpec.describe User, type: :model do
       expect(user).not_to be_valid
     end
 
-    it 'passwordが暗号化されていること' do
+    it "passwordが暗号化されていること" do
       expect(user.encrypted_attributes).not_to eq "foobar123"
+    end
+  end
+
+  describe "#authenticated?" do
+    it "digestがnilならfalseを返すこと" do
+      expect(user.authenticated?("")).to be_falsy
     end
   end
 end
