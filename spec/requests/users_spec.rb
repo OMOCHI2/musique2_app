@@ -8,7 +8,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "POST /users #create" do
+  describe "POST /users" do
     context "有効な値の場合" do
       let(:user_params) { { user: { name: "Example User",
                                     email: "user@example.com",
@@ -45,6 +45,33 @@ RSpec.describe "Users", type: :request do
                                            password: "foobar",
                                            password_confirmation: "barbaz" } }
         }.not_to change(User, :count)
+    end
+  end
+
+  describe "PATCH /users" do
+    let!(:user) { FactoryBot.create(:user) }
+
+    context "無効な値の場合" do
+      it "更新できないこと" do
+        patch user_path(user), params: { user: { name: "invalid",
+                                                 email: "invalid@example.com",
+                                                 password: "foobar",
+                                                 password_confirmation: "barbaz" } }
+        user.reload
+        expect(user.name).not_to eq "invalid"
+        expect(user.email).to_not eq "invalid@example.com"
+        expect(user.password).to_not eq "foobar"
+        expect(user.password_confirmation).to_not eq "barbaz"
+      end
+
+      it "更新後にeditページが表示されていること" do
+        get edit_user_path(user)
+        patch user_path(user), params: { user: { name: "invalid",
+                                                 email: "invalid@example.com",
+                                                 password: "foobar",
+                                                 password_confirmation: "barbaz" } }
+        expect(response.body).to include "アカウント設定 - Musique"
+      end
     end
   end
 
