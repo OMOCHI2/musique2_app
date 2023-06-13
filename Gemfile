@@ -44,8 +44,8 @@ gem "image_processing", "~> 1.2"
 
 gem "active_storage_validations"
 gem "faker"
-gem "will_paginate"
-gem "bootstrap-will_paginate"
+gem "will_paginate", "3.3.0"
+gem "will_paginate-bootstrap5", "~> 0.2.4"
 gem "bootstrap-sass"
 gem "rails-i18n"
 
