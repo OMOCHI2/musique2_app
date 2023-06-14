@@ -199,5 +199,20 @@ RSpec.describe "Users", type: :request do
         expect(response).to redirect_to root_path
       end
     end
+
+    context "管理者権限の検証" do
+      let(:other_user) { FactoryBot.create(:other_user) }
+
+      it "管理者権限は更新できないこと" do
+        log_in other_user
+        expect(other_user).not_to be_admin
+
+        patch user_path(other_user), params: { user: { password: "foobar456",
+                                                       password_confirmation: "foobar456",
+                                                       admin: true } }
+        other_user.reload
+        expect(other_user).not_to be_admin
+      end
+    end
   end
 end
