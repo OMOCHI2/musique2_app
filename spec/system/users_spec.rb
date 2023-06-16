@@ -20,14 +20,14 @@ RSpec.describe "Users", type: :system do
     let!(:admin) { FactoryBot.create(:user) }
     let!(:not_admin) { FactoryBot.create(:other_user) }
 
-    it "adminユーザならdeleteリンクが表示されること" do
+    it "管理者権限ユーザーなら削除リンクが表示されること" do
       log_in admin
       visit users_path
 
       expect(page).to have_link "ユーザーの削除"
     end
 
-    it "adminユーザでなければdeleteリンクが表示されないこと" do
+    it "管理者権限ユーザーでなければ削除リンクが表示されないこと" do
       log_in not_admin
       visit users_path
 
