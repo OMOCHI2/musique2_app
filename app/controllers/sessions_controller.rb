@@ -17,7 +17,7 @@ class SessionsController < ApplicationController
       end
     else
       flash.now[:danger] = "メールアドレスまたはパスワードが違います"
-      render 'new', status: :unprocessable_entity
+      render "new", status: :unprocessable_entity
     end
   end
 

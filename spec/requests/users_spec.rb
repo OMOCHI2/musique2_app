@@ -29,6 +29,13 @@ RSpec.describe "Users", type: :request do
         end
       end
     end
+
+    it "有効化されていないユーザーは表示されないこと" do
+      not_activated_user = FactoryBot.create(:not_activated_user)
+      log_in user
+      get users_path
+      expect(response.body).not_to include not_activated_user.name
+    end
   end
 
   describe "GET /new" do
@@ -44,6 +51,10 @@ RSpec.describe "Users", type: :request do
                                     email: "user@example.com",
                                     password: "foobar123",
                                     password_confirmation: "foobar123" } } }
+
+      before do
+        ActionMailer::Base.deliveries.clear
+      end
 
       it "登録されること" do
         expect {
@@ -61,9 +72,19 @@ RSpec.describe "Users", type: :request do
         expect(flash).to be_any
       end
 
-      it "有効化前なので登録直後は未ログイン状態であること" do
+      it "登録時点では未ログイン状態であること" do
         post users_path, params: user_params
-        expect(logged_in?).to be_falsy
+        expect(logged_in?).to be_falsey
+      end
+
+      it "メールが1件存在すること" do
+        post users_path, params: user_params
+        expect(ActionMailer::Base.deliveries.size).to eq 1
+      end
+
+      it "登録時点ではアカウントが有効化されていないこと" do
+        post users_path, params: user_params
+        expect(User.last).not_to be_activated
       end
     end
 
@@ -77,7 +98,18 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe "get /users/{id}/edit" do
+  describe "GET /users/{id}" do
+    it "有効化されていないユーザーの場合はホーム画面にリダイレクトすること" do
+      user = FactoryBot.create(:user)
+      not_activated_user = FactoryBot.create(:not_activated_user)
+
+      log_in user
+      get user_path(not_activated_user)
+      expect(response).to redirect_to root_path
+    end
+  end
+
+  describe "GET /users/{id}/edit" do
     let(:user) { FactoryBot.create(:user) }
 
     it "タイトルが動的表示であること" do
