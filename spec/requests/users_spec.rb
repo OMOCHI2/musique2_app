@@ -51,10 +51,9 @@ RSpec.describe "Users", type: :request do
         }.to change(User, :count).by 1
       end
 
-      it "ユーザー詳細ページにリダイレクトされること" do
+      it "ホーム画面にリダイレクトされること" do
         post users_path, params: user_params
-        user = User.last
-        expect(response).to redirect_to user_path(user)
+        expect(response).to redirect_to root_path
       end
 
       it "フラッシュメッセージが表示されること" do
@@ -62,9 +61,9 @@ RSpec.describe "Users", type: :request do
         expect(flash).to be_any
       end
 
-      it "ログイン状態であること" do
+      it "有効化前なので登録直後は未ログイン状態であること" do
         post users_path, params: user_params
-        expect(logged_in?).to be_truthy
+        expect(logged_in?).to be_falsy
       end
     end
 
