@@ -102,6 +102,11 @@ RSpec.describe "PasswordResets", type: :request do
       it "ユーザーの詳細ページにリダイレクトすること" do
         expect(response).to redirect_to user_path(@user)
       end
+
+      it "reset_digestがnilになること" do
+        @user.reload
+        expect(@user.reset_digest).to be_nil
+      end
     end
 
     it "パスワードと確認用パスワードが一致しなければ、エラーメッセージが表示されること" do
