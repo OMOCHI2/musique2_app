@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
+RSpec.describe "User", type: :model do
   let(:user) { User.new(name: "Example User", email: "user@example.com",
                         password: "foobar123", password_confirmation: "foobar123") }
 
