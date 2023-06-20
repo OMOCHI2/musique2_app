@@ -24,7 +24,7 @@ class UsersController < ApplicationController
       flash[:info] = "アカウント認証メールを送信しました"
       redirect_to root_path
     else
-      render 'new', status: :unprocessable_entity
+      render "new", status: :unprocessable_entity
     end
   end
 
@@ -52,14 +52,6 @@ class UsersController < ApplicationController
 
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation)
-    end
-
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "ログインしてください。"
-        redirect_to login_url, status: :see_other
-      end
     end
 
     def correct_user

@@ -1,0 +1,19 @@
+<% provide(:title, "新規投稿") %>
+<h1>新規投稿</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_with(model: @post) do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+
+      <%= f.label :content %>
+      <%= f.text_area :content, class: "form-control" %>
+
+      <%= f.submit "公開する", class: "btn btn-warning" %>
+      <%= f.submit "下書き保存", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
