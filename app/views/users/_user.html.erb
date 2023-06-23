@@ -1,5 +1,5 @@
 <li>
-  <%#= gravatar_for user, size: 50 %>
+  <%= image_tag user.image.attached? ? user.image : "default_icon.png",size: "100x100", alt: "アイコン画像" %>
   <%= link_to user.name, user %>
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "ユーザーの削除", user, data: { "turbo-method": :delete,

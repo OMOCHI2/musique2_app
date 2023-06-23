@@ -18,6 +18,11 @@
       <%= f.label :password_confirmation, "確認用パスワード" %>
       <%= f.password_field :password_confirmation, class: "form-control" %>
 
+      <span class="image">
+        <%= f.label :image, "アイコン画像" %>
+        <%= f.file_field :image %>
+      </span>
+
       <%= f.submit "Save changes", class: "btn btn-primary" %>
     <% end %>
   </div>

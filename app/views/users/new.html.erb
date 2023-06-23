@@ -18,6 +18,8 @@
       <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, class: "form-control" %>
 
+      <%= f.file_field :image %>
+
       <%= f.submit "登録する", class: "btn btn-primary" %>
     <% end %>
   </div>
