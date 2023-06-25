@@ -20,7 +20,7 @@
 
       <span class="image">
         <%= f.label :image, "アイコン画像" %>
-        <%= f.file_field :image %>
+        <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
       </span>
 
       <%= f.submit "Save changes", class: "btn btn-primary" %>

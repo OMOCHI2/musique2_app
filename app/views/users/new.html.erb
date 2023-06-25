@@ -19,7 +19,7 @@
       <%= f.password_field :password_confirmation, class: "form-control" %>
 
       <%= f.label :image, "アイコン画像" %>
-      <%= f.file_field :image %>
+      <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
 
       <%= f.submit "登録する", class: "btn btn-primary" %>
     <% end %>

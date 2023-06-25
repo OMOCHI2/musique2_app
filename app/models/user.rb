@@ -13,6 +13,10 @@ class User < ApplicationRecord
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
   validates :password, length: { minimum: 8 }, allow_nil: true,
             format: { with: VALID_PASSWORD_REGEX, message: "は半角英数を両方含む必要があります" }
+  validates :image,   content_type: { in: %w[image/jpeg image/gif image/png],
+                                      message: "must be a valid image format" },
+                      size:         { less_than: 5.megabytes,
+                                      message:   "should be less than 5MB" }
 
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
