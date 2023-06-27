@@ -1,4 +1,8 @@
 <li id="post-<%= post.id %>">
+  <%= link_to post.user do %>
+    <%= image_tag post.user.image.attached? ? post.user.image : "default_icon.png",
+        size: "50x50", alt: "アイコン画像", class: "post-image" %>
+  <% end %>
   <span class="user"><%= link_to post.user.name, post.user %></span>
   <span class="content"><%= post.content %></span>
   <span class="timestamp">

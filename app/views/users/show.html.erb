@@ -5,6 +5,9 @@
       <h1><%= @user.name %></h1>
       <%= image_tag @user.image.attached? ? @user.image : "default_icon.png", size: "200x200", alt: "アイコン画像" %>
     </section>
+    <section class="stats">
+      <%= render "shared/follow_stats" %>
+    </section>
   </aside>
   <div class="col-md-8">
     <% if @user.posts.any? %>

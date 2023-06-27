@@ -95,6 +95,11 @@ RSpec.describe "User", type: :model do
       expect(user.following?(other_user)).to be_truthy
     end
 
+    it "followするとフォロー相手のfollowersに追加されること" do
+      user.follow(other_user)
+      expect(other_user.followers.include?(user)).to be_truthy
+    end
+
     it "unfollowするとfollowing?がfalseとなること" do
       user.follow(other_user)
       expect(user.following?(other_user)).not_to be_falsey
