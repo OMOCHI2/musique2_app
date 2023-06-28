@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Users", type: :request do
 
@@ -206,7 +206,7 @@ RSpec.describe "Users", type: :request do
         expect(flash).not_to be_empty
       end
 
-      it '未ログインユーザはログインページにリダイレクトされること' do
+      it "未ログインユーザはログインページにリダイレクトされること" do
         patch user_path(user), params: { user: { name: user.name,
                                                  email: user.email } }
         expect(response).to redirect_to login_path
@@ -280,6 +280,24 @@ RSpec.describe "Users", type: :request do
         delete user_path(user)
         expect(response).to redirect_to root_path
       end
+    end
+  end
+
+  describe "GET /users/{id}/following" do
+    let(:user) { FactoryBot.create(:user) }
+
+    it "未ログインならログインページにリダイレクトすること" do
+      get following_user_path(user)
+      expect(response).to redirect_to login_path
+    end
+  end
+
+  describe "GET /users/{id}/followers" do
+    let(:user) { FactoryBot.create(:user) }
+
+    it "未ログインならログインページにリダイレクトすること" do
+      get followers_user_path(user)
+      expect(response).to redirect_to login_path
     end
   end
 end

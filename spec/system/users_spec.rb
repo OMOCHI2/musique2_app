@@ -51,4 +51,19 @@ RSpec.describe "Users", type: :system do
       expect(page).not_to have_link "ユーザーの削除"
     end
   end
+
+  describe "#show" do
+    context "follow_statsの検証" do
+      it "フォローとフォロワーが正しく表示されること" do
+        user = FactoryBot.send(:create_relationships)
+        log_in user
+        expect(page).to have_content "10 フォロー"
+        expect(page).to have_content "10 フォロワー"
+
+        visit user_path(user)
+        expect(page).to have_content "10 フォロー"
+        expect(page).to have_content "10 フォロワー"
+      end
+    end
+  end
 end
