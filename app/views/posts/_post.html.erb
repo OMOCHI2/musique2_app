@@ -6,8 +6,8 @@
   <span class="user"><%= link_to post.user.name, post.user %></span>
   <span class="content"><%= post.content %></span>
   <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %> ago.
-    <% if current_user?(post.user) %>
+    Posted <%= time_ago_in_words(post.created_at) %>前
+    <% if @current_user == post.user %>
       <%= link_to "delete", post, data: { "turbo-method": :delete,
                                           turbo_confirm: "You sure?" } %>
     <% end %>
