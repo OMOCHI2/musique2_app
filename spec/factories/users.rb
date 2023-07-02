@@ -18,6 +18,24 @@ FactoryBot.define do
     activated_at          { Time.zone.now }
   end
 
+  factory :hanako, class: User do
+    name                  { "Rails Hanako" }
+    email                 { "hanako@example.com" }
+    password              { "foobar456" }
+    password_confirmation { "foobar456" }
+    activated             { true }
+    activated_at          { Time.zone.now }
+  end
+
+  factory :taro, class: User do
+    name                  { "Ruby Taro" }
+    email                 { "taro@example.com" }
+    password              { "foobar456" }
+    password_confirmation { "foobar456" }
+    activated             { true }
+    activated_at          { Time.zone.now }
+  end
+
   factory :continuous_users, class: User do
     sequence(:name)       { |n| "User #{n}" }
     sequence(:email)      { |n| "user-#{n}@example.com" }

@@ -9,3 +9,13 @@
 
   <%= link_to "新規登録", signup_path, class: "btn btn-lg btn-primary" %>
 </div>
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+    </aside>
+    <div class="col-md-8">
+      <h3>post Feed</h3>
+      <%= render "shared/feed" %>
+    </div>
+  </div>
+<% end %>

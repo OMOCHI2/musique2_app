@@ -112,4 +112,28 @@ RSpec.describe "User", type: :model do
       expect(user.following?(user)).to be_falsey
     end
   end
+
+  describe "#feed" do
+    let(:user) { FactoryBot.create(:user) }
+    let(:posted_by_hanako) { FactoryBot.create(:post_by_hanako) }
+    let(:posted_by_taro) { FactoryBot.create(:post_by_taro) }
+    let(:hanako) { posted_by_hanako.user }
+    let(:taro) { posted_by_taro.user }
+
+    before do
+      user.follow(hanako)
+    end
+
+    it "フォローしているユーザーの投稿が表示されること" do
+      hanako.posts.each do |post_following|
+        expect(user.feed.include?(post_following)).to be_truthy
+      end
+    end
+
+    it "フォローしていないユーザの投稿は表示されないこと" do
+      taro.posts.each do |post_unfollowed|
+        expect(user.feed.include?(post_unfollowed)).to be_falsey
+      end
+    end
+  end
 end
