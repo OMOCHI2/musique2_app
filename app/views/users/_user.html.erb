@@ -3,6 +3,6 @@
   <%= link_to user.name, user %>
   <% if @current_user.admin? %>
     | <%= link_to "ユーザーの削除", user, data: { "turbo-method": :delete,
-                                          turbo_confirm: "You sure?" } %>
+                                        turbo_confirm: "You sure?" } %>
   <% end %>
 </li>

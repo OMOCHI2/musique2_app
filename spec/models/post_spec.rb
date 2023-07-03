@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Post", type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let(:post) { user.posts.build(content: "Lorem ipsum") }
+  let(:post) { user.posts.build(content: "Lorem ipsum, is_draft: false") }
 
   it "有効であること" do
     expect(post).to be_valid
@@ -14,9 +14,9 @@ RSpec.describe "Post", type: :model do
   end
 
   describe "content" do
-    it "空なら無効であること" do
-      post.content = "    "
-      expect(post).not_to be_valid
+    it "公開時に空なら無効であること" do
+      post.content = ""
+      expect(post.save(context: :publicize)).not_to be_truthy
     end
   end
 

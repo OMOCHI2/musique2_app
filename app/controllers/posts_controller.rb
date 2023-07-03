@@ -8,32 +8,78 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
-      flash[:success] = "正常に投稿されました"
-      redirect_to user_path(current_user)
+    if params[:publish]
+      if @post.save(context: :publicize)
+        flash[:success] = "正常に記事が投稿されました！"
+        redirect_to user_path(current_user)
+      else
+        flash.now[:danger] = "記事を投稿できませんでした。入力内容を確認してください"
+        render "new", status: :unprocessable_entity
+      end
     else
-      render "static_pages/home", status: :unprocessable_entity
+      if @post.update_attribute(:is_draft, true)
+        flash[:success] = "下書きを保存しました"
+        redirect_to user_path(current_user)
+      else
+        flash.now[:danger] = "下書きを保存できませんでした。入力内容を確認してください"
+        render "new", status: :unprocessable_entity
+      end
     end
   end
 
   def show
-    @post = Post.find_by(id: params[:id])
+    @post = Post.find(params[:id])
+  end
+
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  def update
+    @post = Post.find(params[:id])
+
+    if params[:publish_from_draft]
+      @post.attributes = post_params.merge(is_draft: false)
+
+      if @post.save(context: :publicize)
+        flash[:success] = "下書き記事を公開しました！"
+        redirect_to user_path(current_user)
+      else
+        @post.is_draft = true
+        flash.now[:danger] = "記事を公開できませんでした。入力内容を確認してください"
+        render "edit", status: :unprocessable_entity
+      end
+    elsif params[:update_post]
+      @post.attributes = post_params
+
+      if @post.save(context: :publicize)
+        flash[:success] = "記事を更新しました！"
+        redirect_to post_path(@post)
+      else
+        flash.now[:danger] = "記事を更新できませんでした。入力内容を確認してください"
+        render "edit", status: :unprocessable_entity
+      end
+    else
+      if @post.update(post_params)
+        flash[:success] = "下書きを更新しました！"
+        redirect_to user_path(current_user)
+      else
+        flash.now[:danger] = "下書きを更新できませんでした。入力内容を確認してください"
+        render "edit", status: :unprocessable_entity, alert: "登録できませんでした"
+      end
+    end
   end
 
   def destroy
     @post.destroy
-    flash[:success] = "削除しました"
-    if request.referrer.nil?
-      redirect_to root_path, status: :see_other
-    else
-      redirect_to request.referrer, status: :see_other
-    end
+    flash[:success] = "記事を削除しました"
+    redirect_to user_path(current_user)
   end
 
   private
 
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :content, :publish, :is_draft)
     end
 
     def correct_user

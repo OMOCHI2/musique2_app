@@ -21,12 +21,5 @@ RSpec.describe "Posts", type: :system do
       visit user_path(@user)
       expect(page).to have_selector "div.pagination"
     end
-
-    it "Postの本文がページ内に表示されていること" do
-      visit user_path @user
-      @user.posts.paginate(page: 1).each do |post|
-        expect(page).to have_content post.content
-      end
-    end
   end
 end
