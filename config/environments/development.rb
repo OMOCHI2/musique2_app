@@ -72,4 +72,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   config.hosts << "musique2.onrender.com"
+  config.active_storage.variant_processor = :mini_magick
+  config.web_console.allowed_ips = '0.0.0.0/0'
 end

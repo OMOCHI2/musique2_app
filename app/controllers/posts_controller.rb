@@ -8,7 +8,6 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    binding.pry
     if @post.save
       flash[:success] = "正常に投稿されました"
       redirect_to user_path(current_user)
