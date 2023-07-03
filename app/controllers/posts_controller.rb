@@ -28,8 +28,8 @@ class PostsController < ApplicationController
 
   private
 
-    def micropost_params
-      params.require(:micropost).permit(:title, :content)
+    def post_params
+      params.require(:post).permit(:title, :content)
     end
 
     def correct_user
