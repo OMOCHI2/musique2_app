@@ -16,6 +16,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def show
+    @post = Post.find_by(id: params[:id])
+  end
+
   def destroy
     @post.destroy
     flash[:success] = "削除しました"
@@ -28,8 +32,8 @@ class PostsController < ApplicationController
 
   private
 
-    def micropost_params
-      params.require(:micropost).permit(:title, :content)
+    def post_params
+      params.require(:post).permit(:title, :content)
     end
 
     def correct_user

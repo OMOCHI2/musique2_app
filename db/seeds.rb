@@ -18,10 +18,11 @@ User.create!(name:  name,
              activated_at: Time.zone.now)
 end
 
-users = User.order(:created_at).take(6)
+users = User.order(:created_at).take(10)
 50.times do
+  title   = Faker::Lorem.sentence(word_count: 2)
   content = Faker::Lorem.sentence(word_count: 5)
-  users.each { |user| user.posts.create!(content: content) }
+  users.each { |user| user.posts.create!(title: title, content: content) }
 end
 
 users = User.all
