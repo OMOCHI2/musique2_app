@@ -8,12 +8,17 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
+    binding.pry
     if @post.save
       flash[:success] = "正常に投稿されました"
-      redirect_to root_path
+      redirect_to user_path(current_user)
     else
       render "static_pages/home", status: :unprocessable_entity
     end
+  end
+
+  def show
+    @post = Post.find_by(id: params[:id])
   end
 
   def destroy
