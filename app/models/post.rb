@@ -7,6 +7,6 @@ class Post < ApplicationRecord
     validates :title
     validates :content
   end
-  validates :title,   length: { maximum: 100 },   on: :publicize
+  validates :title,   length: { maximum: 255 },   on: :publicize
   validates :content, length: { maximum: 10000 }, on: :publicize
 end
