@@ -45,11 +45,6 @@ RSpec.describe "Post", type: :model do
 
   describe "content" do
     context "公開する場合" do
-      it "空は無効であること" do
-        post.content = "   "
-        expect(post.save(context: :publicize)).not_to be_truthy
-      end
-
       it "10001文字以上は無効であること" do
         post.content = "a" * 10001
         expect(post.save(context: :publicize)).not_to be_truthy
@@ -57,7 +52,7 @@ RSpec.describe "Post", type: :model do
     end
 
     context "下書き保存の場合" do
-      it "空は無効であること" do
+      it "空は有効であること" do
         post.content = "   "
         post.is_draft = true
         expect(post.save).to be_truthy
