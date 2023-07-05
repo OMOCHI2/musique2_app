@@ -7,8 +7,15 @@ class GoogleLoginApiController < ApplicationController
   def callback
     payload = Google::Auth::IDTokens.verify_oidc(params[:credential], aud: ENV['YOUR GOOGLE CLIENT ID'])
     user = User.find_or_create_by(email: payload['email'])
-    session[:user_id] = user.id
-    redirect_to root_path, notice: 'ログインしました'
+    if user.name == nil
+      user.name = payload['name']
+      user.password = "foobar123"
+      user.save
+      user.activate
+    end
+    log_in user
+    flash[:info] = "ログインしました"
+    redirect_to root_path
   end
 
   private
