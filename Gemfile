@@ -48,6 +48,7 @@ gem "will_paginate", "3.3.0"
 gem "will_paginate-bootstrap5", "~> 0.2.4"
 gem "bootstrap-sass"
 gem "rails-i18n"
+gem "googleauth"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -55,6 +56,7 @@ group :development, :test do
   gem "rspec-rails", "~> 6.0.0"
   gem "factory_bot_rails"
   gem "pry-byebug"
+  gem "dotenv-rails"
 end
 
 group :development do
