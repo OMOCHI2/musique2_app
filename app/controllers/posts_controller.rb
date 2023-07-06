@@ -2,6 +2,11 @@ class PostsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
   before_action :correct_user,   only: [:edit, :update, :destroy]
 
+  def index
+    @posts = Post.where("title LIKE ? OR content LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
+    @title = params[:keyword]
+  end
+
   def new
     @post = Post.new
   end
