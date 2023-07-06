@@ -3,8 +3,8 @@ class PostsController < ApplicationController
   before_action :correct_user,   only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.where("title LIKE ? OR content LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%")
     @title = params[:keyword]
+    @posts = Post.search(params[:keyword])
   end
 
   def new

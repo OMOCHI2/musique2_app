@@ -1,2 +1,7 @@
 <% provide(:title, "「#{@title}」の検索結果") %>
 <h1>「<%= @title %>」の検索結果</h1>
+
+<% @posts.each do |post| %>
+  <p><%= post.title %></p>
+  <p><%= post.content %></p>
+<% end %>
