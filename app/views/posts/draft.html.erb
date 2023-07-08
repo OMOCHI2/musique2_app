@@ -1,0 +1,8 @@
+<% provide(:title, "下書き一覧") %>
+
+
+<% @posts.each do |post| %>
+  <p><%= post.title %></p>
+  <p><%= post.content %></p>
+  <p><%= post.created_at %></p>
+<% end %>

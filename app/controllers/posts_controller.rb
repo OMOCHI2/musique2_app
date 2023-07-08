@@ -1,10 +1,10 @@
 class PostsController < ApplicationController
-  before_action :logged_in_user, only: [:new, :create, :destroy]
+  before_action :logged_in_user, only: [:new, :create, :destroy, :draft]
   before_action :correct_user,   only: [:edit, :update, :destroy]
 
   def index
     @title = params[:keyword]
-    @posts = Post.search(params[:keyword])
+    @posts = Post.search(params[:keyword]).paginate(page: params[:page])
   end
 
   def new
@@ -76,6 +76,10 @@ class PostsController < ApplicationController
     @post.destroy
     flash[:success] = "記事を削除しました"
     redirect_to user_path(current_user)
+  end
+
+  def draft
+    @posts = current_user.posts.where(is_draft: true).paginate(page: params[:page])
   end
 
   private

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     redirect_to root_path and return unless @user.activated?
-    @posts = @user.posts.paginate(page: params[:page])
+    @posts = @user.posts.where(is_draft: false).paginate(page: params[:page])
   end
 
   def new
