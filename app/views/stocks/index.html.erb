@@ -1,0 +1,8 @@
+<% @stock_posts.each do |post| %>
+  <p><%= post.title %></p>
+  <p><%= post.user.name %></p>
+<% end %>
+
+<div class="paginate">
+  <%= will_paginate @stock_posts %>
+</div>
