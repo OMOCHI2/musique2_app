@@ -7,3 +7,7 @@
 <p>
   Content: <%= @post.content %>
 </p>
+
+<div id="post-<%= @post.id %>">
+    <%= render partial: 'stocks/stock', locals: { post: @post } %>
+</div>

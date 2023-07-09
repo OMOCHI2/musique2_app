@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get    "/login",   to: "sessions#new"
   post   "/login",   to: "sessions#create"
   delete "/logout",  to: "sessions#destroy"
+
   post   "/google_login_api/callback", to: "google_login_api#callback"
 
   resources :users do
@@ -27,4 +28,5 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
+  resources :stocks,              only: [:index, :create, :destroy]
 end
