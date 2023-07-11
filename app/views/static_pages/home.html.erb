@@ -12,6 +12,13 @@
 <% if logged_in? %>
   <div class="row">
     <aside class="col-md-4">
+      <div>
+        <h4>カテゴリー</h4>
+        <% @categories.each do |category| %>
+          <%= link_to category.name, categories_path(name: category.name) %>
+        <% end %>
+      </div>
+
     </aside>
     <div class="col-md-8">
       <h3>post Feed</h3>

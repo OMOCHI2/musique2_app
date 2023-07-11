@@ -28,4 +28,5 @@ Rails.application.routes.draw do
   resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :relationships,       only: [:create, :destroy]
   resources :stocks,              only: [:index, :create, :destroy]
+  resources :categories,          only: [:index]
 end
