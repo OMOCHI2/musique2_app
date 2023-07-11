@@ -3,7 +3,11 @@
 
 /* mixins, variables, etc. */
 
-$gray-medium-light: #eaeaea;
+:root {
+  --base: #8a65c1;
+  --primary: #0f7af4;
+  --body: #ededed;
+}
 
 @mixin box_sizing {
   -moz-box-sizing:    border-box;
@@ -14,9 +18,9 @@ $gray-medium-light: #eaeaea;
 /* universal */
 
 body {
-  padding-top: 60px;
+  line-height: 1.7;
+  background-color: var(--body);
 }
-
 section {
   overflow: auto;
 }
