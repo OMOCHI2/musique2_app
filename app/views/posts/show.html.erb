@@ -8,6 +8,11 @@
   Content: <%= @post.content %>
 </p>
 
+<span>カテゴリー</span>
+<% @post.categories.each do |category| %>
+  <%= category.name %>
+<% end %>
+
 <div id="post-<%= @post.id %>">
     <%= render partial: 'stocks/stock', locals: { post: @post } %>
 </div>

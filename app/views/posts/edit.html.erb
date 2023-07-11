@@ -12,6 +12,14 @@
       <%= f.label :content %>
       <%= f.rich_text_area :content %>
 
+      <%= f.label :category, "カテゴリー" %>
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %> 
+        <%= category.label do %>
+          <%= category.check_box %>
+          <%= category.text %>
+        <% end %>
+      <% end %>
+
       <div class="row mt-4">
         <div class="form-inline mx-auto">
           <% if @post.is_draft == true %>
