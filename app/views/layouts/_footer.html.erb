@@ -1,5 +1,5 @@
 <div class="container">
-  <footer class="row row-cols-5 py-5 my-5 border-top">
+  <footer class="row row-cols-4 py-5 my-5 border-top">
     <div class="col footer-logo">
       <%= link_to "Musique", root_path, class: "logo" %>
       <p class="text-body-secondary">
@@ -17,46 +17,34 @@
         <li class="nav-item mb-2">
           <%= link_to "About", about_path, class: "nav-link p-0 text-body-secondary"%>
         </li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">特徴</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">価格設定</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQ</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">概要</a></li>
+        <li class="nav-item mb-2">
+          <%= link_to "利用規約", terms_path, class: "nav-link p-0 text-body-secondary"%>
+        </li>
+        <li class="nav-item mb-2">
+          <%= link_to "プライバシーポリシー", privacy_path, class: "nav-link p-0 text-body-secondary"%>
+        </li>
+        <li class="nav-item mb-2">
+          <%= link_to "ヘルプ", help_path, class: "nav-link p-0 text-body-secondary"%>
+        </li>
+        <li class="nav-item mb-2">
+          <%= link_to "お問い合わせ", contact_path, class: "nav-link p-0 text-body-secondary" %>
+        </li>
       </ul>
     </div>
 
     <div class="col">
-      <h5>セクション</h5>
+      <h4>運営</h4>
       <ul class="nav flex-column">
-        <li class="nav-item mb-2"></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">特徴</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">価格設定</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQ</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">概要</a></li>
-      </ul>
-    </div>
-
-    <div class="col">
-      <h5>セクション</h5>
-      <ul class="nav flex-column">
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">ホーム</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">特徴</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">価格設定</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">FAQ</a></li>
-        <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">概要</a></li>
+        <li class="nav-item mb-2">
+          <%= link_to "運営会社情報", "#", class: "nav-link p-0 text-body-secondary" %>
+        </li>
+        <li class="nav-item mb-2">
+          <%= link_to "ニュース", "#", class: "nav-link p-0 text-body-secondary" %>
+        </li>
+        <li class="nav-item mb-2">
+          <%= link_to "採用情報", "#", class: "nav-link p-0 text-body-secondary" %>
+        </li>
       </ul>
     </div>
   </footer>
 </div>
-<footer class="footer">
-  <small>
-    The <a href="https://railstutorial.jp/">Ruby on Rails Tutorial</a>
-    by <a href="https://www.michaelhartl.com/">Michael Hartl</a>
-  </small>
-  <nav>
-    <ul>
-      <li><%= link_to "About",   about_path %></li>
-      <li><%= link_to "Contact", contact_path %></li>
-      <li><a href="https://news.railstutorial.org/">News</a></li>
-    </ul>
-  </nav>
-</footer>
