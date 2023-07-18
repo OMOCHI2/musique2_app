@@ -7,19 +7,19 @@ class ContactsController < ApplicationController
   def confirm
     @contact = Contact.new(contact_params)
     if @contact.valid?
-      render :action => 'confirm'
+      render "confirm", status: :unprocessable_entity
     else
-      render :action => 'index'
+      render "index", status: :unprocessable_entity
     end
   end
 
   def done
     @contact = Contact.new(contact_params)
     if params[:back]
-      render :action => 'index'
+      render "index", status: :unprocessable_entity
     else
       ContactMailer.send_mail(@contact).deliver_now
-      render :action => 'done'
+      render "done", status: :unprocessable_entity
     end
   end
 
