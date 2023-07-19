@@ -9,7 +9,7 @@ class GoogleLoginApiController < ApplicationController
     user = User.find_or_create_by(email: payload['email'])
     if user.name == nil
       user.name = payload['name']
-      user.password = "foobar123"
+      user.password = user.new_token
       user.save
       user.activate
     end

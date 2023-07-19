@@ -139,6 +139,7 @@ footer li a {
   color: var(--footer) !important;
 }
 
+
 /* sidebar */
 
 aside {
@@ -664,6 +665,10 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+.google-login iframe {
+  margin: 0 auto !important;
 }
 
 /* Dropdown menu */
