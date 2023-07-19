@@ -14,7 +14,7 @@
           <div class="input-group flexbox py-3">
             <%= form_with url: posts_path, method: :get do |f|%>
               <%= f.text_field :keyword, placeholder: "キーワードを入力", class: "form-control" %>
-              <%= button_tag type: "submit", class: "btn btn-outline-success" do %>
+              <%= button_tag type: "submit", class: "btn btn-outline-success border-white" do %>
                 <i class="fas fa-search"></i> 検索
               <% end %>
             <% end %>

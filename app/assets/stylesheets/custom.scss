@@ -4,11 +4,11 @@
 /* mixins, variables, etc. */
 
 :root {
-  --base: #3c3c3c;
-  --primary: #0f7af4;
-  --purple: #c89fff;
+  --base:         #3c3c3c;
+  --primary:      #0f7af4;
+  --purple:       #c89fff;
   --header-hover: #bebebe;
-  --footer: #3c3c3c;
+  --footer:       #3c3c3c;
 }
 
 @mixin box_sizing {
@@ -105,6 +105,11 @@ p {
   flex-direction: row;
   text-align: center;
   }
+}
+
+.btn-outline-success {
+  border-radius: 0 4px 4px 0;
+  border-left: 0;
 }
 
 .navbar-menu {
