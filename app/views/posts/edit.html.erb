@@ -2,38 +2,51 @@
 <h1>記事編集</h1>
 
 <div class="row">
-  <div class="col-md-10 col-md-offset-1">
+  <div class="col-md-10 m-auto">
     <%= form_with(model: @post, method: :patch) do |f| %>
       <%= render "shared/error_messages", object: f.object %>
 
-      <%= f.label :title %>
-      <%= f.text_field :title, class: "form-control" %>
+      <%= f.label :title, "タイトル" %>
+      <span class="badge bg-danger">必須</span>
+      <small class="text-muted">下書き時のみ空白可</small>
+      <%= f.text_field :title, class: "form-control", placeholder: "タイトルを入力" %>
 
-      <%= f.label :content %>
-      <%= f.rich_text_area :content %>
+      <%= f.label :content, "記事本文" %>
+      <span class="badge bg-danger">必須</span>
+      <small class="text-muted">下書き時のみ空白可</small>
+      <%= f.rich_text_area :content, placeholder: "音楽に関わる知識を書いて、自身で読み返すためにまとめたり共有しよう！" %>
 
-      <%= f.label :category, "カテゴリー" %>
-      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %> 
-        <%= category.label do %>
-          <%= category.check_box %>
-          <%= category.text %>
-        <% end %>
-      <% end %>
-
-      <div class="row mt-4">
-        <div class="form-inline mx-auto">
-          <% if @post.is_draft == true %>
-            <%= f.submit "公開する", name: "publish_from_draft", class: "mr-5 btn btn-sm btn-warning" %>
-            <%= f.submit "下書きを更新", name: "update_draft", class: "mr-5 btn btn-sm btn-outline-secondary" %>
-          <% else %>
-            <%= f.submit "記事を更新", name: "update_post", class: "btn btn-sm btn-warning text-light" %>
+      <div class="categories mt-5 mb-5">
+        <%= f.label :category, "カテゴリー" %>
+        <small class="text-muted">複数選択可</small>
+        <div class="category-items">
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %> 
+            <%= category.label class: "me-2" do %>
+              <%= category.check_box %>
+              <%= category.text %>
+            <% end %>
           <% end %>
         </div>
       </div>
+
+      <div class="float-end">
+        <% if @post.is_draft == true %>
+          <%= f.submit "公開する", name: "publish_from_draft", class: "btn btn-primary me-3" %>
+          <%= f.submit "下書きを更新", name: "update_draft", class: "btn btn-warning" %>
+        <% else %>
+          <%= f.submit "記事を更新", name: "update_post", class: "btn btn-warning" %>
+        <% end %>
+      </div>
     <% end %>
-    <div class="mt-4 pb-3 text-center">
-      <u><%= link_to "記事を削除", @post, data: { "turbo-method": :delete,
-                                          turbo_confirm: "この記事を削除しますか？" }, class: "text-danger" %></u>
+  </div>
+
+  <div class="col-md-10 m-auto">
+    <div class="my-5 text-center">
+      <hr/>
+      <%= link_to "この記事を削除する", @post, data: { "turbo-method": :delete,
+                                                    turbo_confirm: "この記事を削除しますか？" },
+                                            class: "btn btn-danger"
+      %>
     </div>
   </div>
 </div>
