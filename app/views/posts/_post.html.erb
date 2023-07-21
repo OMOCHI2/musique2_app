@@ -1,15 +1,39 @@
-<li id="post-<%= post.id %>">
+<li id="post-<%= post.id %>" class="border-top py-4 my-4">
+  <div>
   <%= link_to post.user do %>
     <%= image_tag post.user.image.attached? ? post.user.image : "default_icon.png",
-        size: "50x50", alt: "アイコン画像", class: "post-image" %>
+        size: "60x60", alt: "アイコン画像", class: "post-image" %>
   <% end %>
-  <span class="user"><%= link_to post.user.name, post.user %></span>
-  <span class="content"><%= post.content %></span>
-  <span class="timestamp">
-    Posted <%= time_ago_in_words(post.created_at) %>前
-    <% if @current_user == post.user %>
-      <%= link_to "delete", post, data: { "turbo-method": :delete,
+  <span class="user-name d-block py-3"><%= link_to post.user.name, post.user %></span>
+  <span class="post-created-at py-2">投稿日 : <%= l post.created_at %></span>
+  </div>
+  <h3 class="post-title mb-4">
+    <%= link_to post.title, post_path(post), class: "link-dark" %>
+  </h3>
+
+  <div class="post-infomation py-3">
+    <div class="tags mb-2">
+      <i class="fas fa-tag me-3"></i>
+      <% if post.categories.any? %>
+        <% post.categories.each do |category| %>
+          <%= link_to category.name, "/categories?name=#{category.name}" %>
+        <% end %>
+      <% else %>
+        <small>関連カテゴリー未設定</small>
+      <% end %>
+    </div>
+
+    <div class="number-of-stocks mb-2">
+      <i class="fas fa-folder-plus me-3"></i>
+      <%= post.stock_users.size %>
+    </div>
+  </div>
+
+  <% if @current_user == post.user %>
+    <div class="delete-post">
+      <%= link_to "記事の削除", post, class:  "float-end",
+                                  data: { "turbo-method": :delete,
                                           turbo_confirm: "You sure?" } %>
-    <% end %>
-  </span>
+    </div>
+  <% end %>
 </li>

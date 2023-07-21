@@ -192,6 +192,16 @@ aside {
   padding: 0;
 }
 
+.post-title {
+  font-size: 1.5em;
+  letter-spacing: 0.05em;
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
 /*--------------------------------------------------------------
 # About Section
 --------------------------------------------------------------*/
@@ -683,10 +693,6 @@ input {
 .posts {
   list-style: none;
   padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
   .user {
     margin-top: 5em;
     padding-top: 0;

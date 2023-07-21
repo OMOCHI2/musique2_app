@@ -23,11 +23,17 @@
 
   <div class="col-md-8">
     <% if @user.posts.any? %>
-      <h3>Posts (<%= @user.posts.where(is_draft: false).count %>)</h3>
+      <h3>
+        <%= @user.posts.where(is_draft: false).count %>
+        件の公開記事
+      </h3>
       <ol class="posts">
         <%= render @posts %>
       </ol>
       <%= will_paginate @posts %>
+    <% else %>
+      <h3>０件の公開記事</h3>
+      <p class="border-top p-5 text-center">公開している記事はまだありません</p>
     <% end %>
   </div>
 </div>
