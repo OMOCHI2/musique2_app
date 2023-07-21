@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   def index
     @title = params[:keyword]
-    @posts = Post.search(params[:keyword]).paginate(page: params[:page])
+    @posts = Post.where(is_draft: false).search(params[:keyword]).paginate(page: params[:page])
   end
 
   def new

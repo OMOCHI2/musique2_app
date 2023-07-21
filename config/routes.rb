@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   post   "/google_login_api/callback", to: "google_login_api#callback"
 
-  resources :users do
+  resources :users, except: [:index] do
     member do
       get :following, :followers
     end
