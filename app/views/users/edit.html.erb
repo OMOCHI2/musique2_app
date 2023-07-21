@@ -1,29 +1,54 @@
 <% provide(:title, "アカウント設定") %>
-<h1>Update your profile</h1>
+<h1>アカウント設定</h1>
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-md-7 m-auto">
     <%= form_with(model: @user) do |f| %>
       <%= render "shared/error_messages", object: f.object %>
 
       <%= f.label :name %>
+      <span class="badge bg-danger">必須</span>
+      <small class="text-muted">30文字以内</small>
       <%= f.text_field :name, class: "form-control" %>
 
       <%= f.label :email %>
+      <span class="badge bg-danger">必須</span>
       <%= f.email_field :email, class: "form-control" %>
 
       <%= f.label :password %>
+      <small class="text-muted">半角英数字混合８文字以上 変更しない場合は空白のまま</small>
       <%= f.password_field :password, class: "form-control" %>
 
       <%= f.label :password_confirmation, "確認用パスワード" %>
+      <small class="text-muted">半角英数字混合８文字以上 変更しない場合は空白のまま</small>
       <%= f.password_field :password_confirmation, class: "form-control" %>
 
       <span class="image">
         <%= f.label :image, "アイコン画像" %>
-        <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png" %>
+        <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png",
+                                 onchange: "avatarImage(this);",
+                                 class: "mb-3"
+      %>
       </span>
 
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <div id="image">
+        <img id="image_preview" class="mb-3" width="300">
+      </div>
+
+      <div class="float-end">
+        <%= f.submit "登録する", class: "btn btn-primary" %>
+      </div>
     <% end %>
   </div>
 </div>
+
+<!------ プレビュー表示用JS ------->
+<script>
+  function avatarImage(obj){
+      var fileReader = new FileReader();
+      fileReader.onload = (function() {
+        document.getElementById('image_preview').src = fileReader.result;
+      });
+      fileReader.readAsDataURL(obj.files[0]);
+  }
+</script>

@@ -4,6 +4,34 @@
   <div class="col-md-7 m-auto">
     <h2>新規登録</h2>
 
+    <div class="google-login">
+      <!-- クライアントライブラリの読み込み -->
+      <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+      <% if notice.present? %>
+        <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+      <% end %>
+
+      <!-- Googleログインボタンの表示ここから -->
+      <div id="g_id_onload"
+        data-client_id= <%= ENV['YOUR_GOOGLE_CLIENT_ID'] %>
+        data-login_uri="http://localhost:3000/google_login_api/callback"
+        data-auto_prompt="false">
+      </div>
+      <div class="g_id_signin"
+        data-type="standard"
+        data-size="large"
+        data-theme="outline"
+        data-text="sign_in_with"
+        data-shape="rectangular"
+        data-logo_alignment="left">
+      </div>
+      <!-- ここまで -->
+    </div>
+
+    <h3 class="text-center mt-5 mb-5">または</h3>
+
+
     <%= form_with(model: @user) do |f| %>
       <%= render "shared/error_messages", object: f.object %>
 
@@ -27,11 +55,13 @@
       <small class="text-muted">半角英数字混合８文字以上</small>
       <%= f.password_field :password_confirmation, class: "form-control" %>
 
-      <%= f.label :image, "アイコン画像", class: "form-label fw-bold" %>
-      <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png",
-                               onchange: "avatarImage(this);",
-                               class: "mb-3"
+      <span class="image">
+        <%= f.label :image, "アイコン画像" %>
+        <%= f.file_field :image, accept: "image/jpeg,image/gif,image/png",
+                                 onchange: "avatarImage(this);",
+                                 class: "mb-3"
       %>
+      </span>
 
       <div id="image">
         <img id="image_preview" class="mb-3" width="300">
