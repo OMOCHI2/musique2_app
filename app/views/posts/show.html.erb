@@ -1,12 +1,27 @@
 <% provide(:title, @post.title) %>
 
-<p>
-  Title: <%= @post.title %>
-</p>
+<div class="row">
+  <%= render "users/user_info_side" %>
 
-<p>
-  Content: <%= @post.content %>
-</p>
+  <div class="col-md-8 py-5">
+    <div class="post-information">
+      <%= link_to @user do %>
+        <%= image_tag @user.image.attached? ? @user.image : "default_icon.png",
+            size: "60x60", alt: "アイコン画像", class: "post-image float-start" %>
+      <% end %>
+      <span class="user-name d-block py-3"><%= link_to @user.name, @user %></span>
+      <span class="post-created-at py-2 me-5">投稿日 : <%= l @post.created_at %></span>
+      <span class="post-updated-at py-2">最終更新日 : <%= l @post.updated_at %></span>
+    </div>
+    <p>
+      Title: <%= @post.title %>
+    </p>
+
+    <p>
+      Content: <%= @post.content %>
+    </p>
+  </div>
+</div>
 
 <span>カテゴリー</span>
 <% @post.categories.each do |category| %>
