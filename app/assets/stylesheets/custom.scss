@@ -38,6 +38,22 @@ textarea {
   }
 }
 
+.pagination em {
+  font-size: 1.2em;
+  padding: 0 10px;
+  border-right: 1px solid var(--base);
+}
+
+.pagination a {
+  font-size: 1.2em;
+  padding: 0 10px;
+  border-right: 1px solid var(--base);
+}
+
+.pagination .next_page {
+  display: none;
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -438,18 +454,6 @@ input {
 
 .dropdown-menu.active {
   display: block;
-}
-
-/* Users index */
-
-.users {
-  list-style: none;
-  margin: 0;
-  li {
-    overflow: auto;
-    padding: 10px 0;
-    border-bottom: 1px solid $gray-lighter;
-  }
 }
 
 /* posts */

@@ -1,6 +1,26 @@
-<li>
-  <%= image_tag user.image.attached? ? user.image : "default_icon.png",size: "100x100", alt: "アイコン画像" %>
-  <%= link_to user.name, user %>
+<li class="border-top py-4">
+  <%= link_to user do %>
+    <%= image_tag user.image.attached? ? user.image : "default_icon.png",
+        size: "100x100",
+        alt: "アイコン画像",
+        class: "post-image rounded"
+    %>
+  <% end %>
+
+  <%= link_to user.name, user, class: "link-dark mx-5" %>
+  <span class="me-3">
+    <i class="fas fa-edit"></i>
+    <%= user.posts.count %>
+  </span>
+  <span class="me-3">
+    <i class="fas fa-users"></i>
+    <%= user.followers.count %>
+  </span>
+  <span>
+    <i class="fas fa-user-plus"></i>
+    <%= user.following.count %>
+  </span>
+
   <% if @current_user.admin? %>
     | <%= link_to "ユーザーの削除", user, data: { "turbo-method": :delete,
                                         turbo_confirm: "You sure?" } %>
