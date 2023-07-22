@@ -5,7 +5,7 @@ class Post < ApplicationRecord
   has_many :stocks, dependent: :destroy
   has_many :stock_users, through: :stocks, source: :user
 
-  has_many :post_categories
+  has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
 
   default_scope -> { order(created_at: :desc) }

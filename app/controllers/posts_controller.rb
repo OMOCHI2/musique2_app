@@ -51,6 +51,7 @@ class PostsController < ApplicationController
         flash.now[:danger] = "記事を公開できませんでした。入力内容を確認してください"
         render "edit", status: :unprocessable_entity
       end
+
     elsif params[:update_post]
       @post.attributes = post_params
 
@@ -61,6 +62,7 @@ class PostsController < ApplicationController
         flash.now[:danger] = "記事を更新できませんでした。入力内容を確認してください"
         render "edit", status: :unprocessable_entity
       end
+
     else
       if @post.update(post_params)
         flash[:success] = "下書きを更新しました！"

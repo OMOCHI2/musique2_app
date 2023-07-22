@@ -115,6 +115,12 @@ p {
   }
 }
 
+@media (max-width: 767px) {
+  .navbar .container {
+    display: block;
+  }
+}
+
 .flexbox {
   form {
   display: flex;
@@ -207,6 +213,10 @@ aside {
 .users.follow {
   padding: 0;
 }
+
+/*--------------------------------------------------------------
+# posts Section
+--------------------------------------------------------------*/
 
 .post-title {
   font-size: 1.5em;

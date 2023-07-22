@@ -1,0 +1,36 @@
+<% @posts.each do |post| %>
+  <li id="post-<%= post.id %>" class="border-top py-4 my-4">
+    <div>
+      <%= link_to post.user do %>
+        <%= image_tag post.user.image.attached? ? post.user.image : "default_icon.png",
+            size: "60x60", alt: "アイコン画像", class: "post-image" %>
+      <% end %>
+      <span class="user-name d-block py-3"><%= link_to post.user.name, post.user %></span>
+      <span class="post-created-at py-2 me-5">投稿日 : <%= l post.created_at %></span>
+      <span class="post-updated-at py-2">最終更新日 : <%= l post.updated_at %></span>
+    </div>
+
+    <h3 class="post-title mb-4">
+      <%= link_to post.title, post_path(post), class: "link-dark" %>
+    </h3>
+    <%= strip_tags(post.content.to_s).gsub(/[\n]/,"").strip.truncate(100) %>
+
+    <div class="post-information py-3">
+      <div class="tags mb-2">
+        <i class="fas fa-tag me-3"></i>
+        <% if post.categories.any? %>
+          <% post.categories.each do |category| %>
+            <%= link_to category.name, "/categories?name=#{category.name}" %>
+          <% end %>
+        <% else %>
+          <small>関連カテゴリー未設定</small>
+        <% end %>
+      </div>
+
+      <div class="number-of-stocks mb-2">
+        <i class="fas fa-folder-plus me-3"></i>
+        <%= post.stock_users.size %>
+      </div>
+    </div>
+  </li>
+<% end %>
