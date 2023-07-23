@@ -1,16 +1,16 @@
-<% provide(:title, @user.name) %>
+<% provide(:title, "ストック記事") %>
 
 <div class="row">
   <%= render "users/user_info_side" %>
 
   <div class="col-md-8">
-    <% if @stock_posts.any? %>
+    <% if @posts.any? %>
       <h3>
-        <%= @stock_posts.count %>
+        <%= @posts.count %>
         件のストック記事
       </h3>
       <ol class="posts">
-        <%= render @posts %>
+        <%= render "posts/post_for_search" %>
       </ol>
       <%= will_paginate @posts %>
     <% else %>

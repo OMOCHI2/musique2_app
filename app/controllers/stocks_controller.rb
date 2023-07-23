@@ -1,6 +1,8 @@
 class StocksController < ApplicationController
+  before_action :logged_in_user
 
   def index
+    @user = current_user
     stock_posts = Stock.get_stock_posts(current_user)
     @posts = stock_posts.paginate(page: params[:page])
   end
