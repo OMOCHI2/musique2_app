@@ -2,7 +2,7 @@ class StocksController < ApplicationController
 
   def index
     stock_posts = Stock.get_stock_posts(current_user)
-    @stock_posts = stock_posts.paginate(page: params[:page])
+    @posts = stock_posts.paginate(page: params[:page])
   end
 
   def create

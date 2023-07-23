@@ -1,8 +1,21 @@
-<% @stock_posts.each do |post| %>
-  <p><%= post.title %></p>
-  <p><%= post.user.name %></p>
-<% end %>
+<% provide(:title, @user.name) %>
 
-<div class="paginate">
-  <%= will_paginate @stock_posts %>
+<div class="row">
+  <%= render "users/user_info_side" %>
+
+  <div class="col-md-8">
+    <% if @stock_posts.any? %>
+      <h3>
+        <%= @stock_posts.count %>
+        件のストック記事
+      </h3>
+      <ol class="posts">
+        <%= render @posts %>
+      </ol>
+      <%= will_paginate @posts %>
+    <% else %>
+      <h3>０件のストック記事</h3>
+      <p class="border-top p-5 text-center">ストックしている記事はまだありません</p>
+    <% end %>
+  </div>
 </div>
