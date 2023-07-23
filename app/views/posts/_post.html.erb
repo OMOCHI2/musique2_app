@@ -33,8 +33,8 @@
   <% if @current_user == post.user %>
     <div class="delete-post">
       <%= link_to "記事の削除", post, class:  "float-end",
-                                  data: { "turbo-method": :delete,
-                                          turbo_confirm: "You sure?" } %>
+                                    data: { "turbo-method": :delete,
+                                            turbo_confirm: "本当に削除しますか？" } %>
     </div>
   <% end %>
 </li>

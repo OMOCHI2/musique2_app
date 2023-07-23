@@ -1,0 +1,46 @@
+<% @posts.each do |post| %>
+  <li id="post-<%= post.id %>" class="border-top py-4 my-4">
+    <div>
+      <%= link_to post.user do %>
+        <%= image_tag post.user.image.attached? ? post.user.image : "default_icon.png",
+            size: "60x60", alt: "アイコン画像", class: "post-image" %>
+      <% end %>
+      <span class="user-name d-block py-3"><%= link_to post.user.name, post.user %></span>
+      <span class="post-created-at py-2 me-5">作成日 : <%= l post.created_at %></span>
+      <span class="post-updated-at py-2">最終更新日 : <%= l post.updated_at %></span>
+    </div>
+
+    <h3 class="post-title mb-4">
+      <% if post.title.present? %>
+        <%= link_to post.title,   edit_post_path(post), class: "link-dark" %>
+      <% else %>
+        <%= link_to "タイトル未定", edit_post_path(post), class: "link-dark" %>
+      <% end %>
+    </h3>
+
+    <% if post.content.present? %>
+      <%= strip_tags(post.content.to_s).gsub(/[\n]/,"").strip.truncate(100) %>
+    <% else %>
+      <small>記事内容はまだ記述していません</small>
+    <% end %>
+
+    <div class="post-information py-3">
+      <div class="tags mb-2">
+        <i class="fas fa-tag me-3"></i>
+        <% if post.categories.any? %>
+          <% post.categories.each do |category| %>
+            <%= category.name %>
+          <% end %>
+        <% else %>
+          <small>関連カテゴリー未設定</small>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="delete-post">
+      <%= link_to "下書き記事の削除", post, class:  "float-end",
+                                    data: { "turbo-method": :delete,
+                                            turbo_confirm: "本当に削除しますか？" } %>
+    </div>
+  </li>
+<% end %>

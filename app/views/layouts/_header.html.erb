@@ -33,9 +33,9 @@
               <li><%= link_to "フォロー", following_user_path(current_user) %></li>
               <li><%= link_to "フォロワー", followers_user_path(current_user) %></li>
               <li class="divider"></li>
-              <li><%= link_to "記事を新規作成", "#" %></li>
-              <li><%= link_to "下書き一覧", "#" %></li>
-              <li><%= link_to "ストック記事", "#" %></li>
+              <li><%= link_to "記事を新規作成", new_post_path %></li>
+              <li><%= link_to "下書き一覧",    draft_posts_path %></li>
+              <li><%= link_to "ストック記事",   stocks_path %></li>
               <li class="divider"></li>
               <li>
                 <%= link_to "ログアウト", logout_path, data: { "turbo-method": :delete } %>

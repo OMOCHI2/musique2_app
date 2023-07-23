@@ -1,8 +1,21 @@
 <% provide(:title, "下書き一覧") %>
 
+<div class="row">
+  <%= render "users/user_info_side" %>
 
-<% @posts.each do |post| %>
-  <p><%= post.title %></p>
-  <p><%= post.content %></p>
-  <p><%= post.created_at %></p>
-<% end %>
+  <div class="col-md-8">
+    <% if @posts.any? %>
+      <div>
+        <h3><%= @posts.count %> 件の下書き記事</h3>
+        <small>該当記事タイトルを押下して編集しましょう</small>
+      </div>
+      <ol class="posts">
+        <%= render "post_for_draft" %>
+      </ol>
+      <%= will_paginate @posts %>
+    <% else %>
+      <h3>０件の下書き記事</h3>
+      <p class="border-top p-5 text-center">現在下書き記事はありません</p>
+    <% end %>
+  </div>
+</div>

@@ -41,6 +41,7 @@ class PostsController < ApplicationController
   end
 
   def update
+    # 下書き状態から公開
     if params[:publish_from_draft]
       @post.attributes = post_params.merge(is_draft: false)
 
@@ -53,6 +54,7 @@ class PostsController < ApplicationController
         render "edit", status: :unprocessable_entity
       end
 
+    # 公開している記事の内容を更新
     elsif params[:update_post]
       @post.attributes = post_params
 
@@ -64,6 +66,7 @@ class PostsController < ApplicationController
         render "edit", status: :unprocessable_entity
       end
 
+    # 下書き状態のまま記事の内容を更新
     else
       if @post.update(post_params)
         flash[:success] = "下書きを更新しました！"
@@ -82,7 +85,8 @@ class PostsController < ApplicationController
   end
 
   def draft
-    @posts = current_user.posts.where(is_draft: true).paginate(page: params[:page])
+    @user = current_user
+    @posts = @user.posts.where(is_draft: true).paginate(page: params[:page])
   end
 
   private
