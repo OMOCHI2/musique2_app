@@ -1,7 +1,24 @@
 <% provide(:title, "#{@category.name} カテゴリー") %>
 
-<% @posts.each do |post| %>
-  <p><%= post.title %></p>
-  <p><%= post.content %></p>
-  <p><%= post.created_at %></p>
-<% end %>
+<h2>
+  <i class="fas fa-tag me-2"></i>
+  <%= @category.name %>
+</h2>
+
+<div class="row">
+  <div class="col-md-10 m-auto">
+    <% if @posts.any? %>
+      <h3>
+        <%= @posts.count %>
+        件ヒットしました
+      </h3>
+      <ol class="posts">
+        <%= render "posts/post_for_search" %>
+      </ol>
+      <%= will_paginate @posts %>
+    <% else %>
+      <h3>０件ヒットしました</h3>
+      <p class="border-top p-5 text-center">検索条件に合う記事は存在しませんでした。</p>
+    <% end %>
+  </div>
+</div>

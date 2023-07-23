@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
     if @category.nil?
       redirect_to root_path
     else
-      @posts = @category.posts
+      @posts = @category.posts.paginate(page: params[:page])
     end
   end
 end
