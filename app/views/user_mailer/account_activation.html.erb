@@ -1,10 +1,21 @@
-<h1>Sample App</h1>
+<h1>MUSIQUE</h1>
 
-<p>Hi <%= @user.name %>,</p>
+<p><%= @user.name %> 様</p>
 
 <p>
-Welcome to the Sample App! Click on the link below to activate your account:
+  <br>
+  MUSIQUEのご登録ありがとうございます！<br>
+  <br>
+  まだ本登録は完了しておりません。<br>
+  下記リンクにアクセスし、アカウントを有効化してください。<br>
+  <br>
 </p>
 
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token,
+<%= link_to "アカウントを有効化する", edit_account_activation_url(@user.activation_token,
                                                     email: @user.email) %>
+
+<small>
+  <br>
+  ※有効期限は2時間となっております。<br>
+  過ぎてしまった場合は、お手数ですが新規登録より再度お試しください。
+</small>

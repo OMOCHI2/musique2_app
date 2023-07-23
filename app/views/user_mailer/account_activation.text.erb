@@ -1,5 +1,10 @@
-Hi <%= @user.name %>,
+<%= @user.name %> 様
 
-Welcome to the Sample App! Click on the link below to activate your account:
+MUSIQUEのご登録ありがとうございます！
+
+まだ本登録は完了しておりません。
+下記リンクにアクセスし、アカウントを有効化してください。
 
 <%= edit_account_activation_url(@user.activation_token, email: @user.email) %>
+
+※有効期限は2時間となっております。過ぎてしまった場合は新規登録より再度お試しください。
