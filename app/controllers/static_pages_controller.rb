@@ -22,4 +22,7 @@ class StaticPagesController < ApplicationController
 
   def company
   end
+
+  def jobs
+  end
 end
