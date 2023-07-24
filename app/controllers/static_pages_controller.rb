@@ -19,4 +19,7 @@ class StaticPagesController < ApplicationController
 
   def privacy
   end
+
+  def company
+  end
 end
