@@ -11,7 +11,7 @@
       </div>
       <ul id="navbar-menu" class="nav navbar-nav navbar-right collapse navbar-collapse">
         <li>
-          <div class="input-group flexbox py-3">
+          <div class="input-group flexbox p-3">
             <%= form_with url: posts_path, method: :get do |f|%>
               <%= f.text_field :keyword, placeholder: "キーワードを入力", class: "form-control" %>
               <%= button_tag name: nil, type: "submit", class: "btn btn-outline-success border-white" do %>
@@ -42,7 +42,7 @@
               </li>
             </ul>
           </li>
-          <li><%= link_to "投稿する", new_post_path, class: "btn btn-dark" %>
+          <li><%= link_to "投稿する", new_post_path, class: "btn text-white" %>
         <% else %>
           <li><%= link_to "ログイン", login_path %></li>
         <% end %>
