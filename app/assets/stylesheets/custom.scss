@@ -420,6 +420,31 @@ aside {
   position: relative;
 }
 
+.company .article {
+  border: 1px solid #eee;
+  margin: 20px 0;
+  padding: 30px;
+}
+
+.definition-list .list-label {
+  margin-bottom: 10px;
+  color: var(--base);
+  font-size: 90%;
+  font-weight: normal;
+}
+
+.definition-list .list-content {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  color: var(--base);
+}
+
+.list-content:last-child {
+  border-bottom: 0;
+  margin-bottom: 0;
+}
+
 /* forms */
 
 input, textarea, select, .uneditable-input {
