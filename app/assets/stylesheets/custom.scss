@@ -366,6 +366,7 @@ aside {
   margin-bottom: 30px;
   padding-bottom: 30px;
   position: relative;
+  text-align: left;
 }
 
 .terms-privacy h2:after {
@@ -379,6 +380,18 @@ aside {
   right: 0;
   bottom: 0;
   margin: auto;
+}
+
+.terms-privacy ol {
+  margin-bottom: 50px;
+}
+
+.terms-privacy ol li {
+  margin: 15px 0;
+}
+
+.terms-privacy hr {
+  margin: 50px 0;
 }
 
 /*--------------------------------------------------------------
