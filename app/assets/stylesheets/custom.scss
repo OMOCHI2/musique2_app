@@ -360,7 +360,7 @@ aside {
 }
 
 /*--------------------------------------------------------------
-# Terms Section
+# Terms and Privacy Section
 --------------------------------------------------------------*/
 .terms-privacy h2 {
   margin-bottom: 30px;
@@ -392,6 +392,11 @@ aside {
 
 .terms-privacy hr {
   margin: 50px 0;
+}
+
+.privacy-text {
+  font-size: 14px;
+  margin-top: 20px;
 }
 
 /*--------------------------------------------------------------
@@ -457,7 +462,6 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  // width: 100%;
   margin-bottom: 15px;
   @include box_sizing;
 }
