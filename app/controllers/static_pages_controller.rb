@@ -1,8 +1,12 @@
 class StaticPagesController < ApplicationController
+  MAX_GET_POSTS = 10
 
   def home
     if logged_in?
-      @feed_items = current_user.feed.paginate(page: params[:page])
+      # @post = current_user.posts.build
+      @following_users_posts = Post.where(user_id: [*current_user.following_ids], is_draft: false)
+                                   .limit(MAX_GET_POSTS)
+                                   .order(created_at: :desc)
       @categories = Category.all
     end
   end

@@ -1,5 +1,5 @@
-<% @posts.each do |post| %>
-  <li id="post-<%= post.id %>" class="border-top py-4 my-4">
+<% @following_users_posts.each do |post| %>
+  <li id="following-users-post-<%= post.id %>" class="border-top py-4 my-4">
     <div class="d-flex flex-row">
       <div class="me-5">
         <%= link_to post.user do %>
