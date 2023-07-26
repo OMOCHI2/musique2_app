@@ -11,6 +11,10 @@ class UsersController < ApplicationController
   end
 
   def new
+    if logged_in?
+      flash[:danger] = "無効な操作です"
+      redirect_to root_path, status: :see_other
+    end
     @user = User.new
   end
 

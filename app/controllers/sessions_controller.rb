@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
 
   def new
+    if logged_in?
+      flash[:warning] = "既にログインしています"
+      redirect_to root_path, status: :see_other
+    end
   end
 
   def create
