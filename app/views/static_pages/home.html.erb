@@ -32,33 +32,35 @@
       </div>
     </aside>
     <div class="col-md-8">
-      <% if logged_in? %>
-        <h3>
-          フォローしているユーザーの記事
-          <small class="ms-3">(新着順 10件)</small>
-        </h3>
-        <% if @following_users_posts.any? %>
-          <ol class="list-unstyled">
-            <%= render "shared/following_users_post" %>
-          </ol>
-        <% else %>
-          <hr class="my-5">
-          <p>
-            フォローしているユーザーはまだいません。
-            興味のある記事の投稿者を積極的にフォローしてみよう！
-          </p>
+      <div class="following-posts">
+        <% if logged_in? %>
+          <h3>
+            フォローしているユーザーの記事
+            <small class="ms-3">(新着順 10件)</small>
+          </h3>
+          <% if @following_users_posts.any? %>
+            <ol class="list-unstyled">
+              <%= render "shared/following_users_post" %>
+            </ol>
+          <% else %>
+            <hr class="my-5">
+            <p>
+              フォローしているユーザーはまだいません。
+              興味のある記事の投稿者を積極的にフォローしてみよう！
+            </p>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
 
-      <h3>ストック数の多い記事</h3>
+      <div class="popular-posts">
+        <h3>
+          ストック数の多い人気記事
+          <small class="ms-3">(ストック数順 10件)</small>
+        </h3>
         <ol class="list-unstyled">
-        <%= render "shared/following_users_post" %>
+          <%= render "shared/popular_post" %>
         </ol>
-          <hr class="my-5">
-        <p>
-          フォローしているユーザーはまだいません。
-          興味のある記事の投稿者を積極的にフォローしてみよう！
-        </p>
+      </div>
     </div>
   </div>
 <% end %>

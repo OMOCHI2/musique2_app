@@ -7,6 +7,9 @@ class StaticPagesController < ApplicationController
       @following_users_posts = Post.where(user_id: [*current_user.following_ids], is_draft: false)
                                    .limit(MAX_GET_POSTS)
                                    .order(created_at: :desc)
+      @popular_posts = Post.includes(:stock_users)
+                           .limit(MAX_GET_POSTS)
+                           .sort { |a,b| b.stock_users.count <=> a.stock_users.count }
       @categories = Category.all
     end
   end
