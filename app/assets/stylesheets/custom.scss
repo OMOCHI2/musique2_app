@@ -272,7 +272,7 @@ aside {
 
 .hero .carousel-item::before {
   content: "";
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.6);
   position: absolute;
   inset: 0;
 }
@@ -356,7 +356,7 @@ aside {
 }
 
 .hero .info .btn-get-started:hover {
-  background: var(--base);
+  background: var(--primary);
   color: #fff;
   text-decoration: none;
 }
