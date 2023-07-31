@@ -3,15 +3,17 @@ class StaticPagesController < ApplicationController
 
   def home
     if logged_in?
-      # @post = current_user.posts.build
       @following_users_posts = Post.where(user_id: [*current_user.following_ids], is_draft: false)
                                    .limit(MAX_GET_POSTS)
-                                   .order(created_at: :desc)
-      @popular_posts = Post.includes(:stock_users)
-                           .limit(MAX_GET_POSTS)
-                           .sort { |a,b| b.stock_users.count <=> a.stock_users.count }
-      @categories = Category.all
+                                   .descending
     end
+    @popular_posts = Post.find(Stock.group(:post_id)
+                                    .order("count(post_id) desc")
+                                    .limit(MAX_GET_POSTS)
+                                    .pluck(:post_id)
+                              )
+    @random_posts =  Post.where(is_draft: false).order("RANDOM()").limit(MAX_GET_POSTS)
+    @categories = Category.all
   end
 
   def help

@@ -8,8 +8,8 @@ class Post < ApplicationRecord
   has_many :post_categories, dependent: :destroy
   has_many :categories, through: :post_categories
 
-  default_scope -> { order(created_at: :desc) }
-
+  scope :descending, -> { order(created_at: :desc) }
+  
   validates :user_id, presence: true
   validates :title,   presence: true, length: { maximum: 255 }, on: :publicize
   validates :content, length: { maximum: 10000 }, on: :publicize

@@ -1,91 +1,102 @@
-<section id="hero" class="hero">
-  <div class="info d-flex align-items-center">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-6 text-center">
-          <h2>MUSIQUE</h2>
-          <p>
-            「MUSIQUE」は楽曲制作に関する知識を記録・共有するためのサービスです。
-            記事を読むこと、記事を書くことを通して、インプット・アウトプットの場とすることで、
-            クリエイターが効率良く成長することを目的としています。<br>
-            また昨今、ウェブ上でのDTM・DAWの情報も増え、適切な記事に辿り着くことが困難なケースもあります。
-            そこで情報を「MUSIQUE」に集約し、 クリエイター同士が互いの生産性を向上させることを目指します。
-
-          </p>
-          <%= link_to "新規登録する", signup_path, class: "btn-get-started mt-5" %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-    <div class="carousel-item item-1 active"></div>
-    <div class="carousel-item item-2"></div>
-    <div class="carousel-item item-3"></div>
-    <div class="carousel-item item-4"></div>
-    <div class="carousel-item item-5"></div>
-
-    <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-      <span class="carousel-control-prev-icon fas fa-angle-left" aria-hidden="true"></span>
-    </a>
-    <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-      <span class="carousel-control-next-icon fas fa-angle-right" aria-hidden="true"></span>
-    </a>
-  </div>
-</section><!-- End Hero Section -->
-
-<% if logged_in? %>
-  <div class="row">
-    <aside class="col-md-4">
-      <div>
-        <h4>カテゴリー</h4>
-        <% @categories.each do |category| %>
-          <%= link_to categories_path(name: category.name), class: "me-3" do %>
-            <i class="fas fa-tag"></i>
-            <%= category.name %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="sidebar-ads">
-        <div class="ad-box box-1">
-          <p>広告サンプル</p>
-        </div>
-        <div class="ad-box box-2">
-          <p>広告サンプル</p>
-        </div>
-      </div>
-    </aside>
-    <div class="col-md-8">
-      <div class="following-posts">
-        <% if logged_in? %>
-          <h3>
-            フォローしているユーザーの記事
-            <small class="ms-3">(新着順 10件)</small>
-          </h3>
-          <% if @following_users_posts.any? %>
-            <ol class="list-unstyled">
-              <%= render "shared/following_users_post" %>
-            </ol>
-          <% else %>
-            <hr class="my-5">
+<% unless logged_in? %>
+  <section id="hero" class="hero">
+    <div class="info d-flex align-items-center">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-6 text-center">
+            <h2>MUSIQUE</h2>
             <p>
-              フォローしているユーザーはまだいません。
-              興味のある記事の投稿者を積極的にフォローしてみよう！
+              「MUSIQUE」は楽曲制作に関する知識を記録・共有するためのサービスです。
+              記事を読むこと、記事を書くことを通して、インプット・アウトプットの場とすることで、
+              クリエイターが効率良く成長することを目的としています。<br>
+              また昨今、ウェブ上でのDTM・DAWの情報も増え、適切な記事に辿り着くことが困難なケースもあります。
+              そこで情報を「MUSIQUE」に集約し、 クリエイター同士が互いの生産性を向上させることを目指します。
             </p>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div class="popular-posts">
-        <h3>
-          ストック数の多い人気記事
-          <small class="ms-3">(ストック数順 10件)</small>
-        </h3>
-        <ol class="list-unstyled">
-          <%= render "shared/popular_post" %>
-        </ol>
+            <%= link_to "新規登録する", signup_path, class: "btn-get-started mt-5" %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+
+    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+      <div class="carousel-item item-1 active"></div>
+      <div class="carousel-item item-2"></div>
+      <div class="carousel-item item-3"></div>
+      <div class="carousel-item item-4"></div>
+      <div class="carousel-item item-5"></div>
+
+      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon fas fa-angle-left" aria-hidden="true"></span>
+      </a>
+      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon fas fa-angle-right" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
 <% end %>
+
+<div class="row">
+  <aside class="col-md-4 mt-5">
+    <div>
+      <h4>カテゴリー</h4>
+      <% @categories.each do |category| %>
+        <%= link_to categories_path(name: category.name), class: "me-3" do %>
+          <i class="fas fa-tag"></i>
+          <%= category.name %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="sidebar-ads">
+      <div class="ad-box box-1">
+        <p class="text-center">Ads Powered by Sample.com</p>
+      </div>
+      <div class="ad-box box-2">
+        <p class="text-center">Ads Powered by Sample.com</p>
+      </div>
+    </div>
+  </aside>
+
+  <div class="col-md-8 mt-5">
+    <div class="following-posts">
+      <% if logged_in? %>
+        <h3>
+          フォローしているユーザーの記事
+          <small class="ms-3">(新着順 10件)</small>
+        </h3>
+        <% if @following_users_posts.any? %>
+          <ol class="list-unstyled">
+            <%= render "shared/following_users_post" %>
+          </ol>
+        <% else %>
+          <hr class="my-5">
+          <p>
+            フォローしているユーザーはまだいません。
+            興味のある記事の投稿者を積極的にフォローしてみよう！
+          </p>
+        <% end %>
+      <% end %>
+    </div>
+
+    <div class="popular-posts">
+      <h3>
+        人気記事
+        <small class="ms-3">(ストック数順 10件まで)</small>
+      </h3>
+      <ol class="list-unstyled">
+        <%= render "shared/popular_post" %>
+      </ol>
+    </div>
+
+    <div class="random-posts">
+      <h3>
+        ランダム記事
+        <small class="ms-3">(ランダム表示 10件) 優良記事に出会えるかも？</small>
+      </h3>
+      <ol class="list-unstyled">
+        <%= render "shared/random_post" %>
+      </ol>
+    </div>
+  </div>
+</div>
+
