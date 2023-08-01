@@ -16,5 +16,13 @@
     <section class="follow-and-unfollow">
       <%= render "users/follow_form" if logged_in? %>
     </section>
+
+    <% if @current_user.admin? && current_user != @user %>
+      <div id="user-delete" class="d-flex justify-content-center mt-5">
+        <%= link_to "違反ユーザーの削除", @user, class: "btn btn-danger mx-auto",
+                    data: { "turbo-method": :delete, turbo_confirm: "本当に削除しますか？" }
+        %>
+      </div>
+    <% end %>
   </div>
 </aside>
