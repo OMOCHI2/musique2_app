@@ -8,28 +8,36 @@ RSpec.describe "StaticPages", type: :system do
     end
 
     it "ホーム画面が正しく表示されていること" do
-      expect(page).to have_content "Welcome to the Musique"
+      # ログインの有無に関わらずホーム画面にのみ表示されているべき要素
+      expect(page).to have_selector "div.popular-posts"
     end
 
     describe "header" do
       it "アプリタイトルが表示されており遷移できること" do
-        within "header" do
-          click_on "Musique"
+        within "nav.navbar" do
+          click_on "MUSIQUE"
           expect(current_path).to eq root_path
         end
       end
 
       it "ホームへのリンクが表示されており遷移できること" do
-        within "header" do
-          click_on "Home"
+        within "nav.navbar" do
+          click_on "ホーム"
           expect(current_path).to eq root_path
         end
       end
 
       it "ヘルプページへのリンクが表示されており遷移できること" do
-        within "header" do
-          click_on "Help"
+        within "nav.navbar" do
+          click_on "ヘルプ"
           expect(current_path).to eq help_path
+        end
+      end
+
+      it "ログインページへのリンクが表示されており遷移できること" do
+        within "nav.navbar" do
+          click_on "ログイン"
+          expect(current_path).to eq login_path
         end
       end
     end
@@ -42,9 +50,9 @@ RSpec.describe "StaticPages", type: :system do
         end
       end
 
-      it "コンタクトページへのリンクが表示されており遷移できること" do
+      it "お問い合わせページへのリンクが表示されており遷移できること" do
         within "footer" do
-          click_on "Contact"
+          click_on "お問い合わせ"
           expect(current_path).to eq contact_path
         end
       end
