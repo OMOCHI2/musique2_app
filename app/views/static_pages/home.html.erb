@@ -40,7 +40,7 @@
     <div>
       <h4>カテゴリー</h4>
       <% @categories.each do |category| %>
-        <%= link_to categories_path(name: category.name), class: "me-3" do %>
+        <%= link_to categories_path(name: category.name), id: "#{category.name}", class: "me-3" do %>
           <i class="fas fa-tag"></i>
           <%= category.name %>
         <% end %>
