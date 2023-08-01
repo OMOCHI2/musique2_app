@@ -72,9 +72,11 @@ RSpec.describe "Post", type: :model do
     end
   end
 
-  it "並び順が投稿の新しい順になっていること" do
+  it "descendingメソッドを用いたとき、並び順が投稿の新しい順になっていること" do
     FactoryBot.send(:user_with_posts)
-    expect(FactoryBot.create(:most_recent)).to eq Post.first
+    most_recent = FactoryBot.create(:most_recent)
+    posts = Post.all.descending
+    expect(most_recent).to eq posts.first
   end
 
   it "ユーザーが削除された場合、そのユーザーの投稿も削除されること" do
