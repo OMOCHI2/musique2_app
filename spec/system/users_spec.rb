@@ -39,16 +39,16 @@ RSpec.describe "Users", type: :system do
 
     it "管理者権限ユーザーなら削除リンクが表示されること" do
       log_in admin
-      visit users_path
+      visit user_path(not_admin)
 
-      expect(page).to have_link "ユーザーの削除"
+      expect(page).to have_link "違反ユーザーの削除"
     end
 
     it "管理者権限ユーザーでなければ削除リンクが表示されないこと" do
       log_in not_admin
-      visit users_path
+      visit user_path(admin)
 
-      expect(page).not_to have_link "ユーザーの削除"
+      expect(page).not_to have_link "違反ユーザーの削除"
     end
   end
 
