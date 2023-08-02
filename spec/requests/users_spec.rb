@@ -88,7 +88,7 @@ RSpec.describe "Users", type: :request do
     it "タイトルが動的表示であること" do
       log_in user
       get edit_user_path(user)
-      expect(response.body).to include "アカウント設定 - Musique"
+      expect(response.body).to include "アカウント設定 - MUSIQUE"
     end
 
     context "未ログインの場合" do
@@ -168,7 +168,7 @@ RSpec.describe "Users", type: :request do
       end
 
       it "更新後にeditページが表示されていること" do
-        expect(response.body).to include "アカウント設定 - Musique"
+        expect(response.body).to include "アカウント設定 - MUSIQUE"
       end
     end
 
