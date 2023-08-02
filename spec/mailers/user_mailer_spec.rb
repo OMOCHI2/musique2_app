@@ -26,7 +26,6 @@ RSpec.describe UserMailer, type: :mailer do
 
     it "本文にユーザー名が表示されていること" do
       expect(mail_body).to match user.name
-      binding.pry
     end
 
     it "本文にユーザーのactivation_tokenが表示されていること" do

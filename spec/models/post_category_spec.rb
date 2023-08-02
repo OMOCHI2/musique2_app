@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PostCategory, type: :model do
-  let(:post)     { FactoryBot.create(:post_by_user) }
-  let(:category) { FactoryBot.create(:daw) }
+  let(:post)          { FactoryBot.create(:post_by_user) }
+  let(:category)      { FactoryBot.create(:daw) }
   let(:post_category) { post.post_categories.build(category_id: category.id) }
 
   it "有効であること" do
