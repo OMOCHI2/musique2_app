@@ -11,10 +11,10 @@ RSpec.describe "Users", type: :request do
 
   describe "POST /users" do
     context "有効な値の場合" do
-      let(:user_params) { { user: { name: "Example User",
-                                    email: "user@example.com",
-                                    password: "foobar123",
-                                    password_confirmation: "foobar123" } } }
+      let(:user_params) { user: { name: "Example User",
+                                  email: "user@example.com",
+                                  password: "foobar123",
+                                  password_confirmation: "foobar123" } }
 
       before do
         ActionMailer::Base.deliveries.clear
@@ -46,7 +46,7 @@ RSpec.describe "Users", type: :request do
         expect(ActionMailer::Base.deliveries.size).to eq 1
       end
 
-      it "登録時点ではアカウントが有効化されていないこと" do
+      it "入力での登録時点ではアカウントが有効化されていないこと" do
         post users_path, params: user_params
         expect(User.last).not_to be_activated
       end
@@ -58,7 +58,7 @@ RSpec.describe "Users", type: :request do
                                            email: "invlid@example.com",
                                            password: "foobar",
                                            password_confirmation: "barbaz" } }
-        }.not_to change(User, :count)
+      }.not_to change(User, :count)
     end
   end
 
