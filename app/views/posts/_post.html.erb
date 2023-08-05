@@ -35,7 +35,7 @@
       <%= link_to "削除", post, class:   "float-end mx-4",
                                 data: { "turbo-method": :delete,
                                         turbo_confirm: "本当に削除しますか？" } %>
-      <%= link_to "編集", edit_post_path, class: "float-end" %>
+      <%= link_to "編集", edit_post_path(post), class: "float-end" %>
     </div>
   <% end %>
 </li>
