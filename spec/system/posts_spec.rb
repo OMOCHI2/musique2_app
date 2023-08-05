@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :system do
-  describe "#new, #create", js: true do
+  describe "#new, #create" do
     let(:user) { FactoryBot.create(:user) }
 
     before do
@@ -9,7 +9,7 @@ RSpec.describe "Posts", type: :system do
       visit new_post_path
     end
     context "有効な場合" do
-      it "記事を公開できること", driver: :selenium_chrome_headless do
+      it "記事を公開できること" do
         expect {
           fill_in "post_title", with: "Sample title"
           find(".trix-content").set("Sample content")

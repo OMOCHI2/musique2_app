@@ -63,7 +63,7 @@ RSpec.describe "Contacts", type: :request do
       post contact_done_path, params: { contact: { name:    "Test User",
                                                    email:   "test@example.com",
                                                    content: "Test content" },
-                                        back:    { name: "戻る" }
+                                        back:    { name:    "戻る" }
                                       }
       expect(response).to have_http_status(422)
       expect(response.body).not_to include "ありがとうございます。お問い合わせ内容を送信しました。"
@@ -73,7 +73,7 @@ RSpec.describe "Contacts", type: :request do
       post contact_done_path, params: { contact: { name:    "Test User",
                                                    email:   "test@example.com",
                                                    content: "Test content" },
-                                        back:    { name: "戻る" }
+                                        back:    { name:    "戻る" }
                                       }
       expect(ActionMailer::Base.deliveries.size).to eq 0
     end
