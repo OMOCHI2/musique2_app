@@ -4,7 +4,7 @@ RSpec.describe "AccountActivations", type: :request do
   describe "GET /account_activations/{id}/edit" do
     before do
       post users_path, params: { user: { name: "Example User",
-                                         email: "user@example.com",
+                                         email: "user@examples.com",
                                          password: "foobar123",
                                          password_confirmation: "foobar123" } }
       @user = controller.instance_variable_get("@user")

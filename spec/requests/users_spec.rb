@@ -11,10 +11,10 @@ RSpec.describe "Users", type: :request do
 
   describe "POST /users" do
     context "有効な値の場合" do
-      let(:user_params) { user: { name: "Example User",
-                                  email: "user@example.com",
-                                  password: "foobar123",
-                                  password_confirmation: "foobar123" } }
+      let(:user_params) { { user: { name: "Example User",
+                                    email: "user@examples.com",
+                                    password: "foobar123",
+                                    password_confirmation: "foobar123" } } }
 
       before do
         ActionMailer::Base.deliveries.clear
@@ -55,7 +55,7 @@ RSpec.describe "Users", type: :request do
     it "無効な値だと登録されないこと" do
       expect {
         post users_path, params: { user: { name: "invalid",
-                                           email: "invlid@example.com",
+                                           email: "invalid@example.com",
                                            password: "foobar",
                                            password_confirmation: "barbaz" } }
       }.not_to change(User, :count)

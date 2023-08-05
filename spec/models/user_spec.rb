@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "User", type: :model do
-  let(:user) { User.new(name: "Example User", email: "user@example.com",
+  let(:user) { User.new(name: "Example User", email: "user@examples.com",
                         password: "foobar123", password_confirmation: "foobar123") }
 
   describe "ユーザーの新規登録" do
