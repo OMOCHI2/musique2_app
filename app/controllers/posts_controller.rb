@@ -38,6 +38,15 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+
+    if @post.is_draft
+      if current_user = @user
+        redirect_to edit_post_path(@post)
+      else
+        flash[:warning] = "無効な操作です"
+        redirect_to root_path, status: :see_other
+      end
+    end
   end
 
   def edit
