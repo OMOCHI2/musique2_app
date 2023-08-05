@@ -16,7 +16,7 @@ FactoryBot.define do
     title      { "Sample Post" }
     content    { "Posted by User" }
     created_at { Time.zone.now }
-    user       factory: :user
+    user       { association :user }
   end
 
   factory :post_by_other, class: Post do
@@ -38,6 +38,14 @@ FactoryBot.define do
     content    { "Posted by Hanako" }
     created_at { Time.zone.now }
     user       factory: :hanako
+  end
+
+  factory :draft_by_user, class: Post do
+    title      { "Sample Post" }
+    content    { "Posted by User" }
+    is_draft   { true }
+    created_at { Time.zone.now }
+    user       { association :user }
   end
 end
 
