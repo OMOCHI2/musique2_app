@@ -1,0 +1,17 @@
+<% provide(:title, "カテゴリー追加") %>
+<h1>カテゴリー追加</h1>
+
+<div class="row">
+  <div class="col-md-10 m-auto">
+    <%= form_with(model: @category, url: categories_path) do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+
+      <%= f.label :name, "カテゴリー名" %>
+      <span class="badge bg-danger">必須</span>
+      <small class="text-muted">スペースを入れず簡潔に</small>
+      <%= f.text_field :name, class: "form-control", placeholder: "タイトルを入力" %>
+
+      <%= f.submit "追加する", class: "btn btn-primary float-end" %>
+    <% end %>
+  </div>
+</div>
