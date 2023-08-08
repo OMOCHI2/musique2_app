@@ -70,6 +70,7 @@ group :development do
   # gem "spring"
 
   gem "mailcatcher"
+  gem "rails-erd"
 end
 
 group :test do

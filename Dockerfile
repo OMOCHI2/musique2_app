@@ -1,6 +1,6 @@
 FROM ruby:3.1
 
-RUN apt update -qq && apt install -y postgresql-client
+RUN apt-get update -qq && apt-get install -y postgresql-client graphviz
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
