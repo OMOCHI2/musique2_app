@@ -15,7 +15,11 @@
       <!-- Googleログインボタンの表示ここから -->
       <div id="g_id_onload"
         data-client_id= <%= ENV['YOUR_GOOGLE_CLIENT_ID'] %>
-        data-login_uri="http://localhost:3000/google_login_api/callback"
+        <% if Rails.env.production? %>
+          data-login_uri="https://musique3-e4cc5326aa42.herokuapp.com/google_login_api/callback"
+        <% else %>
+          data-login_uri="http://localhost:3000/google_login_api/callback"
+        <% end %>
         data-auto_prompt="false">
       </div>
       <div class="g_id_signin"
