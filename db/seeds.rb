@@ -7,20 +7,21 @@ User.create!(name:  "Guest User",
              activated_at: Time.zone.now)
 
 19.times do |n|
-name  = Faker::Name.name
-email = "user-#{n+1}@example.com"
-password = "foobar123"
-User.create!(name:  name,
-             email: email,
-             password:              password,
-             password_confirmation: password,
-             activated:    true,
-             activated_at: Time.zone.now)
+  name  = Faker::Name.name
+  email = "user-#{n+1}@example.com"
+  password = "foobar123"
+  User.create!(name:  name,
+               email: email,
+               password:              password,
+               password_confirmation: password,
+               activated:    true,
+               activated_at: Time.zone.now)
 end
 
 users = User.all
 user  = users.first
-following = users[1..9]
+following = users[1..10]
 followers = users[1..19]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
+
