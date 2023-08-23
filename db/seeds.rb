@@ -25,3 +25,7 @@ followers = users[1..19]
 following.each { |followed| user.follow(followed) }
 followers.each { |follower| follower.follow(user) }
 
+category_names = ["DTM", "DAW", "Logic", "Cubase", "ProTools", "音楽理論"]
+category_names.each do |name|
+  Category.create!(name: name)
+end
