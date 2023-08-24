@@ -12,9 +12,10 @@
               また昨今、ウェブ上でのDTM・DAWの情報も増え、適切な記事に辿り着くことが困難なケースもあります。
               そこで情報を「MUSIQUE」に集約し、 クリエイター同士が互いの生産性を向上させることを目指します。
             </p>
-            <%= link_to "新規登録する", signup_path, class: "btn-get-started mt-5" %>
-            <%= link_to "ゲストログイン", login_path, class: "btn-get-started mt-5" %>
-            <h4 class="text-center text-white mt-5 mb-5">または</h4>
+            <%= link_to "新規登録する", signup_path, class: "btn-get-started mt-3" %>
+            <%= link_to "ゲストログイン", guest_login_path, data: { "turbo-method": :post },
+                                                          class: "btn-get-started mt-3" %>
+            <p class="text-center text-white mt-3 mb-3">または</p>
             <div class="google-login">
               <!-- クライアントライブラリの読み込み -->
               <script src="https://accounts.google.com/gsi/client" async defer></script>

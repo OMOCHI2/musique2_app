@@ -26,6 +26,14 @@ class SessionsController < ApplicationController
     end
   end
 
+  def guest_login
+    user = User.find_by(email: "guest@example.com")
+    log_in user
+    flash[:success] = "ゲストログインありがとうございます！管理者権限にてログインいたしました。
+                        非管理者権限ログインは、お手数ですがgoogleログインか新規登録にてお願い致します。"
+    redirect_to root_path
+  end
+
   def destroy
     log_out if logged_in?
     redirect_to root_path, status: :see_other
