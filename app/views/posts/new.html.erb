@@ -20,7 +20,7 @@
         <%= f.label :category, "カテゴリー" %>
         <small class="text-muted">複数選択可</small>
         <div class="category-items">
-          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %> 
+          <%= f.collection_check_boxes(:category_ids, Category.all, :id, :name) do |category| %>
             <%= category.label class: "me-2" do %>
               <%= category.check_box %>
               <%= category.text %>
