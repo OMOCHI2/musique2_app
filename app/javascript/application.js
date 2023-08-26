@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "custom/menu"
-import "custom/image_upload"
+// import "custom/image_upload"
 import "trix"
+import "custom/trix_editor_overrides"
 import "@rails/actiontext"

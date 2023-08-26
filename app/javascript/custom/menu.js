@@ -1,4 +1,4 @@
-document.addEventListener("turbo:load", function() {
+document.addEventListener("turbolinks:load", function() {
   let hamburger = document.querySelector("#hamburger");
   hamburger.addEventListener("click", function(event) {
     event.preventDefault();
