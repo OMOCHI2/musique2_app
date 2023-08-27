@@ -6,7 +6,9 @@ class CategoriesController < ApplicationController
     if @category.nil?
       redirect_to posts_path
     else
-      @posts = @category.posts.where(is_draft: false).paginate(page: params[:page])
+      @posts = @category.posts.includes([:rich_text_content, :user, :categories, user: :image_attachment])
+                        .where(is_draft: false)
+                        .paginate(page: params[:page])
     end
   end
 

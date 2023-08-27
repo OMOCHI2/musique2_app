@@ -19,6 +19,15 @@ User.create!(name:  "Guest User",
 end
 
 users = User.all
+users.each do |user|
+  10.times do |n|
+    title = "#{user.name} title-#{n}"
+    content = "content-#{n}"
+    @post = user.posts.build(title: title, content: content)
+    @post.save
+  end
+end
+
 user  = users.first
 following = users[1..10]
 followers = users[1..19]

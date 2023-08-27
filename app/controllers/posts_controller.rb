@@ -4,7 +4,8 @@ class PostsController < ApplicationController
 
   def index
     @title = params[:keyword]
-    @posts = Post.where(is_draft: false)
+    @posts = Post.includes([:rich_text_content, :user, :categories, user: :image_attachment])
+                  .where(is_draft: false)
                   .search(params[:keyword])
                   .descending
                   .paginate(page: params[:page])
@@ -98,7 +99,9 @@ class PostsController < ApplicationController
 
   def draft
     @user = current_user
-    @posts = @user.posts.where(is_draft: true).paginate(page: params[:page])
+    @posts = @user.posts.includes([[:rich_text_content, :categories]])
+                        .where(is_draft: true)
+                        .paginate(page: params[:page])
   end
 
   private

@@ -71,6 +71,7 @@ group :development do
 
   gem "mailcatcher"
   gem "rails-erd"
+  gem "bullet"
 end
 
 group :test do
