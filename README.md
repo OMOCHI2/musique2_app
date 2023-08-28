@@ -6,10 +6,12 @@
 * アプリ内容<br>
 音楽理論・楽曲制作技術に特化した知識の記録・共有サービス<br>
 デザインは一部Bootstrapデザインテンプレートを使用<br>
+<br>
 
 * URL<br>
 Github  - https://github.com/OMOCHI2/musique2_app <br>
 App URL - https://musique3-e4cc5326aa42.herokuapp.com <br>
+<br>
 
 * 開発環境<br>
 ■ホストOS - MacOS<br>
