@@ -5,7 +5,7 @@ class GoogleLoginApiController < ApplicationController
   before_action :verify_g_csrf_token
 
   def callback
-    payload = Google::Auth::IDTokens.verify_oidc(params[:credential], aud: ENV['YOUR GOOGLE CLIENT ID'])
+    payload = Google::Auth::IDTokens.verify_oidc(params[:credential], aud: ENV['YOUR_GOOGLE_CLIENT_ID'])
     user = User.find_or_create_by(email: payload['email'])
     if user.name == nil
       user.name = payload['name']
