@@ -2,7 +2,6 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@1.1.2
-  node: circleci/node@2
   heroku: circleci/heroku@1.2.3
 
 # setup
@@ -11,18 +10,16 @@ commands:
     steps:
       - checkout
       - ruby/install-deps
-      - node/install-packages:
-          pkg-manager: yarn
 
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.1.4-node
+      - image: cimg/ruby:3.1.4
     steps:
       - setup
   test:
     docker:
-      - image: cimg/ruby:3.1.4-node
+      - image: cimg/ruby:3.1.4
       - image: circleci/postgres:11.6-alpine
         name: "db"
         environment:
