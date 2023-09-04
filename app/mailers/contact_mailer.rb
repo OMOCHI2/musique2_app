@@ -3,7 +3,7 @@ class ContactMailer < ApplicationMailer
     @contact = contact
     mail(
       from: contact.email,
-      to: ENV['ADMIN_EMAIL'],
+      to: "satsukisama.mochi@gmail.com",
       subject: "Webサイト「MUSIQUE」より問い合わせが届きました"
     )
   end
