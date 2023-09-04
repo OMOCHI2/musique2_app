@@ -1,8 +1,9 @@
 version: 2.1
 
-# orbs:
-#   ruby: circleci/ruby@1.1.2
-#   node: circleci/node@2
+orbs:
+  ruby: circleci/ruby@1.1.2
+  node: circleci/node@2
+  heroku: circleci/heroku@1.2.3
 
 # setup
 commands:
@@ -17,12 +18,12 @@ commands:
 jobs:
   build:
     docker:
-      - image: circleci/ruby:3.1.4-node-browsers
+      - image: cimg/ruby:3.1.4-node
     steps:
       - setup
   test:
     docker:
-      - image: circleci/ruby:3.1.4-node-browsers
+      - image: cimg/ruby:3.1.4-node
       - image: circleci/postgres:11.6-alpine
         name: "db"
         environment:
@@ -30,7 +31,7 @@ jobs:
           POSTGRES_DB: myapp_test
           POSTGRES_PASSWORD: ""
     environment:
-      BUNDLE_JOBS: "4"
+      BUNDLE_JOBS: "3"
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
       PGUSER: postgres
