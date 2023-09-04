@@ -13,7 +13,6 @@ commands:
       - ruby/install-deps
       - node/install-packages:
           pkg-manager: yarn
-          cache-key: "yarn.lock"
 
 jobs:
   build:
@@ -31,7 +30,7 @@ jobs:
           POSTGRES_DB: myapp_test
           POSTGRES_PASSWORD: ""
     environment:
-      BUNDLE_JOBS: "3"
+      BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
       PGHOST: 127.0.0.1
       PGUSER: postgres
